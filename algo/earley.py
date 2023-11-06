@@ -15,7 +15,7 @@ class earley_parser:
     for sit in D[j - 1]:
       if len(sit.rule.right) > sit.pos_rule and sit.rule.right[sit.pos_rule] == w[j - 1]:
         D[j].add(situation(sit.rule, sit.cnt_let + 1, sit.pos_rule + 1, sit.cnt_let_before))
-  
+
   def complete(self, D, j):
     D_nw = set()
     for sti_up in D[j]:
@@ -65,38 +65,6 @@ def fit(tree_obj, G):
   tree_obj.fit(G)
 
 def predict(tree_obj, w):
-  return tree_obj.earley(w)  
-
-if __name__ == '__main__':
-  n = int(input())
-  G = set()
-  G.add(rule('P', 'S'))
-  for i in range(n):
-    rl = input().split('->')
-    G.add(rule(rl[0], rl[1]))
-  tree_obj = earley_parser()
-  fit(tree_obj, G)
-
-  w = input()
-
-  print(predict(tree_obj, w))
-  
-'''
-3
-S->aSa
-S->
-S->bS
-abbba
-
-YES
-'''
-'''
-4
-S->abaS
-S->A
-A->cdA
-A->dd
-abaccdd
-
-NO
-'''
+  if tree_obj.earley(w):
+    return 'YES'
+  return 'NO'
