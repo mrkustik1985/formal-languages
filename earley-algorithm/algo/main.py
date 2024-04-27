@@ -13,23 +13,3 @@ if __name__ == '__main__':
   fit(tree_obj, G)
   w = input()
   print(predict(tree_obj, w))
-
-'''
-3
-S->aSa
-S->
-S->bS
-abbba
-
-YES
-'''
-'''
-4
-S->abaS
-S->A
-A->cdA
-A->dd
-abaccdd
-
-NO
-'''
